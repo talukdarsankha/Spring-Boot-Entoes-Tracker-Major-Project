@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{base ::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+</head>
+<body>
+<section>   
+	
+		<div class="item1">
+		<h1>LOGIN PAGE</h1>
+		<th:block th:if="${param.error}">
+			<p class="text-center text-danger fs-5"> [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]] </p>
+			
+		</th:block>
+		<th:block th:if="${param.logout}">
+			<p class="text-center text-danger fs-5"> Logout Successfully!!</p>
+		</th:block>
+		
+		<th:block th:if="${session.msg}">
+			<p style="text-align: center; color: green;">[[${session.msg}]]</p>
+			<th:block th:text="${@userServiceImpl.removeSession()}"></th:block>
+		</th:block>
+	<form action="/wesd" method="post">
+  <div class="mb-3">
+   
+      <div class="mb-3">
+    <label for="exampleInputEmail13" class="form-label">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail13" aria-describedby="emailHelp" name="username">
+      </div>
+     
+      
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+ 
+  <button type="submit" class="btn btn-primary" id="one">Login</button>
+</form>
+
+<p>Don't have an account? <a th:href="@{RegisterPage}">Register</a></p>
+<h6><a th:href="@{forgotPasswordPage}">Forgot Password</a></h6>
+</div>
+	
+	
+	
+</section>
+</body>
+</html>

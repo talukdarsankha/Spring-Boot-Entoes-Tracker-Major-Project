@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+ th:replace="~{base ::Layout(~{::title},~{::section})}">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Page</title>
+</head>
+<body>
+	
+	<section> 
+	
+	<div class="item1">
+		<h1>ADD YOUR NOTES</h1>
+		<th:block th:if="session.msg">
+			<p class="text-center text-success fs-5"> [[${session.msg}]]</p>
+		<th:block th:text="${@userServiceImpl.removeSession()}">
+			</th:block>
+		</th:block>
+		
+	<form action="addNotes" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail11" class="form-label">Title</label>
+    <input type="text" class="form-control" id="exampleInputEmail11" aria-describedby="emailHelp" name="title">
+      </div>
+      
+     <div class="form-floating">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
+  <label for="floatingTextarea2">Insert your note here!!!</label>
+</div>
+
+ <div class="categoryselect">
+	<label for="flo">Select Your Note Category</label> 
+	 <select class="form-select" aria-label="Default select example" name="category" id="flo">
+  <option selected>Choose...</option>
+  <option value="Very Important">Very Important</option>
+  <option value="Important">Important</option>
+  <option value="Temporary">Temporary</option>
+  
+</select> 
+ </div>
+     
+ 
+  <button type="submit" class="btn btn-primary" id="one">Add <i class="fa-solid fa-book-open fa-lg"></i></button>
+</form>
+
+
+</div>	
+	
+</section>
+
+</body>
+</html>

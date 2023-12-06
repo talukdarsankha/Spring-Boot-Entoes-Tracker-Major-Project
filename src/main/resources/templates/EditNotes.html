@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base ::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Page</title>
+</head>
+<body>
+<section>
+	
+	
+		<div class="item1">
+		<h1> <i class="fa-solid fa-book-journal-whills fa-lg"></i> UPDATE YOUR NOTE</h1>
+	<form action="/user/updateNote" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail11" class="form-label">Title</label>
+    <input type="text" class="form-control" id="exampleInputEmail11" aria-describedby="emailHelp" th:value="${note.title}" name="title">
+      </div>
+      
+     <div class="form-floating">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description">
+	  [[${note.description}]]
+  </textarea>
+  <label for="floatingTextarea2">Insert your note here!!!</label>
+</div>
+
+
+<div class="categoryselect">
+	<label for="flo">Select Your Note Category</label> 
+	 <select class="form-select" aria-label="Default select example" name="category" id="flo">
+  <option selected>[[${note.category}]]</option>
+  <option value="Very Important">Very Important</option>
+  <option value="Important">Important</option>
+  <option value="Temporary">Temporary</option>
+  
+</select>
+	 
+ </div>
+
+     
+<input type="hidden" name="id" th:value="${note.id}">
+  <button type="submit" class="btn btn-primary" id="one">Edit <i class="fa-solid fa-book-open fa-lg"></i></button>
+</form>
+
+
+</div>	
+	
+	
+</section>
+</body>
+</html>

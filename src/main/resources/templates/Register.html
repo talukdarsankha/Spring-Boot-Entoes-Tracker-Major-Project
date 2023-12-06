@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base ::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register Page</title>
+</head>
+<body>
+<section> 
+	
+	<div class="item1">
+		<h1>REGISTER PAGE</h1>
+		<th:block th:if="${session.msg}">
+			<p style="text-align: center; color: green;">[[${session.msg}]]</p>
+			<th:block th:text="${@userServiceImpl.removeSession()}"></th:block>
+		</th:block>
+	<form action="RegisterUser" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail11" class="form-label">Full Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail11" aria-describedby="emailHelp" name="fullName">
+      </div>
+      <div class="mb-3">
+    <label for="exampleInputEmail12" class="form-label">Qualification</label>
+    <input type="text" class="form-control" id="exampleInputEmail12" aria-describedby="emailHelp" name="qualification">
+      </div>
+      <div class="mb-3">
+    <label for="exampleInputEmail13" class="form-label">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail13" aria-describedby="emailHelp" name="email">
+      </div>
+      <div class="mb-3">
+    <label for="exampleInputEmail14" class="form-label">Address</label>
+    <input type="text" class="form-control" id="exampleInputEmail14" aria-describedby="emailHelp" name="address">
+      </div>
+      <h5>Gender</h5>
+      <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male">
+  <label class="form-check-label" for="inlineRadio1">Male</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
+  <label class="form-check-label" for="inlineRadio2">Female</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="Others">
+  <label class="form-check-label" for="inlineRadio3">Others</label>
+</div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1a" class="form-label">Mobile Number</label>
+    <input type="number" class="form-control" id="exampleInputPassword1a" name="mobileNumber">
+  </div>
+ 
+  <button type="submit" class="btn btn-primary" id="one">Register</button>
+</form>
+
+<p>Allready have an account? <a th:href="@{LoginPage}">Login</a></p>
+</div>	
+	
+</section>
+
+
+</body>
+</html>

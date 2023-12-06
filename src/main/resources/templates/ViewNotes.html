@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:tj="http://www.thymeleaf.org" th:replace="~{base ::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Notes Page</title>
+</head>
+<body>
+<section> 
+
+<h1>ALL NOTES</h1>
+
+<th:block th:if="${session.msg}">
+	<p class="text-center text-success fs-5">[[${session.msg}]]</p>
+<th:block th:text="${@userServiceImpl.removeSession()}">
+</th:block>
+</th:block>
+
+<div class="searchBar">
+ <form class="d-flex" action="/user/searchNote" method="post">
+        <input class="form-control me-2" type="search" placeholder="Search Your Notes" aria-label="Search" name="searchKey"  >
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+</div>
+
+
+
+
+<div>
+	<h4 style="text-align: center;"> <i class="fa-solid fa-filter fa-sm"></i>Filter Your Notes</h4>
+<form class="sortdateAndcategory" action="/user/filterNote" method="post">
+	<div style="margin-left: 20px; margin-right: 20px; width: 250px;" >
+		 <select class="form-select" aria-label="Default select example" name="category" id="flo">
+  <option selected value="co">Choose...</option>
+  <option value="Very Important">Very Important</option>
+  <option value="Important">Important</option>
+  <option value="Temporary">Temporary</option>
+</select> 
+ </div>
+ 
+<div style="margin-left: 20px; margin-right: 20px; width: 250px;">
+		 <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="date" value="2012-3-23">
+	</div>
+	<div style="margin-left: 20px; margin-right: 20px;">
+	 <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
+ </form>
+</div>
+
+
+
+
+<div class="item1" th:each="e: ${ll}">
+		
+	
+  <div class="mb" >
+ <i class="fa-solid fa-book fa-2xl" ></i>
+  </div>   
+  <h5>Your Note Id: <a th:href="@{'/user/page/'+${pageIndex}+'?sortFiled=id'+'&sortDirection='+${reverseDirection}}">[[${e.id}]]</a></h5>
+  <h3>[[${e.title}]]</h3>
+  <p>[[${e.description}]]</p>
+  <h6 style="color: blue;">Date: [[${e.date}]]</h6>
+   <h6>Category: [[${e.category}]]</h6>
+  
+  
+  <div style="width: 200px; margin:  auto;">
+ <a th:href="@{'/user/editNote/'+${e.id}}">  <button  class="btn btn-primary" >Edit</button> </a>
+  <a th:href="@{'/user/deleteNote/'+${e.id}}">  <button  class="btn btn-danger" >Delete</button> </a>
+ </div>   
+
+
+</div>
+
+
+<div class="pagi">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item" th:if="${pageIndex!=0}"><a class="page-link" th:href="'/user/page/'+${pageIndex-1}+'?sortFiled='+${sortFiled}+'&sortDirection='+${sortDirection}">Previous</a></li>
+    <li class="page-item" th:each=" e: ${#numbers.sequence(1,TotalPages)}" th:classappend="${(pageIndex+1==e)? 'active':''}"><a class="page-link" th:href="'/user/page/'+${e-1}+'?sortFiled='+${sortFiled}+'&sortDirection='+${sortDirection}">[[${e}]]</a></li>
+   
+    <li class="page-item" th:if="${pageIndex!=TotalPages-1}"><a class="page-link" th:href="'/user/page/'+${pageIndex+1}+'?sortFiled='+${sortFiled}+'&sortDirection='+${sortDirection}">Next</a></li>
+  </ul>
+</nav>
+</div>
+
+<h6>Total Page :[[${TotalPages}]]</h6>
+<h6>Total Elements :[[${TotalElements}]]</h6>
+<h6>Page Index :[[${pageIndex}]]</h6>
+
+
+<footer>
+		
+    <p class="ft">© Copyright All Right Reserved 2023. ABN 53 001 228 799</p> 
+	</footer>
+
+</section>
+</body>
+</html>

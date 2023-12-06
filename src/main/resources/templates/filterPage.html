@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+ th:replace="~{base ::Layout(~{::title},~{::section})}">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Filter Page</title>
+</head>
+<body>
+	
+	<section>
+		<h1>Filtered Results</h1>
+	<div class="item1" th:each="e: ${ll}">
+		
+	
+  <div class="mb" >
+ <i class="fa-solid fa-book fa-2xl" ></i>
+  </div>   
+  
+  <h3>[[${e.title}]]</h3>
+  <p>[[${e.description}]]</p>
+  <h6 style="color: blue;">Date: [[${e.date}]]</h6>
+ <h6>Category: [[${e.category}]]</h6>
+  
+  
+  <div style="width: 200px; margin:  auto;">
+ <a th:href="@{'editNote/'+${e.id}}">  <button  class="btn btn-primary" >Edit</button> </a>
+  <a th:href="@{'deleteNote/'+${e.id}}">  <button  class="btn btn-danger" >Delete</button> </a>
+ </div>   
+
+
+</div>
+
+
+
+</section>
+
+</body>
+</html>
